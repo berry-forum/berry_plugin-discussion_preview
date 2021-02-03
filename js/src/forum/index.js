@@ -7,6 +7,7 @@ app.initializers.add('preview-discussion', () => {
     let index = 1;
     let previewMode = false;
     const previewDOM = document.createElement("div");
+    document.body.appendChild(previewDOM);
 
     extend(DiscussionComposer.prototype, 'init', function () {
         this.editor.props.preview = () => {
@@ -27,5 +28,14 @@ app.initializers.add('preview-discussion', () => {
 
     extend(TextEditor.prototype, 'oninput', function () {
         s9e.TextFormatter.preview(this.value, previewDOM);
+    });
+
+    extend(ComposerBody.prototype, 'headerItems', function (items) {
+        items.add('preview-discussion', previewDOM, 50);
+        if (previewMode) {
+            previewDOM.style.display = "block";
+        } else {
+            previewDOM.style.display = "none";
+        }
     });
 });
