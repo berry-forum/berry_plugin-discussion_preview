@@ -1,5 +1,5 @@
 {
-  "name": "starinc/discussion_preview",
+  "name": "starinc/nex_discussion-preview",
   "description": "Preview the final output when editing a new discussion.",
   "type": "flarum-extension",
   "keywords": [
@@ -15,7 +15,7 @@
     }
   ],
   "require": {
-    "flarum/core": "^0.1.0"
+    "flarum/core": "^0.1.0-beta"
   },
   "extra": {
     "flarum-extension": {
