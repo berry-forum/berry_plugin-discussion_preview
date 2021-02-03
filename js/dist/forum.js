@@ -141,8 +141,8 @@ app.initializers.add('preview-discussion', function () {
       vdom.children[0].attrs.id = this.textareaId;
     }
   });
-  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_3__["extend"])(flarum_components_TextEditor__WEBPACK_IMPORTED_MODULE_0___default.a.prototype, 'oninput', function () {
-    s9e.TextFormatter.preview(this.value, previewDOM);
+  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_3__["extend"])(flarum_components_TextEditor__WEBPACK_IMPORTED_MODULE_0___default.a.prototype, 'oninput', function (vdom) {
+    console.log(vdom);
   }); // extend(ComposerBody.prototype, 'headerItems', function (items) {
   //     items.add('preview-discussion', previewDOM, 50);
   //     if (previewMode) {

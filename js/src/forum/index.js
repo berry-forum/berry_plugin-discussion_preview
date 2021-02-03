@@ -26,8 +26,8 @@ app.initializers.add('preview-discussion', () => {
         }
     });
 
-    extend(TextEditor.prototype, 'oninput', function () {
-        s9e.TextFormatter.preview(this.value, previewDOM);
+    extend(TextEditor.prototype, 'oninput', function (vdom) {
+        console.log(vdom);
     });
 
     // extend(ComposerBody.prototype, 'headerItems', function (items) {
