@@ -1,23 +1,25 @@
-# Preview Discussion
+# Nex
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg) [![Latest Stable Version](https://img.shields.io/packagist/v/simonxeko/preview-discussion.svg)](https://packagist.org/packages/simonxeko/preview-discussion)
+全方位的『超』自由論壇
+> 為壓力大想找人抒發，或者心中有小宇宙想找人分享的你
+>
+> 提供最棒的多元交流平台
 
-A [Flarum](http://flarum.org) extension. Preview the final output when editing a new discussion
+![logo](nex.png)
 
-### Installation
+## 文章預覽
 
-Use [Bazaar](https://discuss.flarum.org/d/5151-flagrow-bazaar-the-extension-marketplace) or install manually with composer:
+以 [MIT License](LICENSE) 發行程式原始碼
 
-```sh
-composer require simonxeko/preview-discussion
-```
+    MIT License
+    
+    Copyright (c) 2021 Star Inc. (https://starinc.xyz)
+    Copyright (c) 2020 simonxeko.
+    
+    Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+    
+    The above copyright notice and this permission notice (including the next paragraph) shall be included in all copies or substantial portions of the Software.
+    
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-### Updating
-
-```sh
-composer update simonxeko/preview-discussion
-```
-
-### Links
-
-- [Packagist](https://packagist.org/packages/simonxeko/preview-discussion)
+> (c) 2020 [Star Inc.](https://starinc.xyz) with [Kater Team](https://kater.me).
