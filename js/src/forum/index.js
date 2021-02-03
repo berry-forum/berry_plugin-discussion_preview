@@ -28,13 +28,4 @@ app.initializers.add('preview-discussion', () => {
     extend(TextEditor.prototype, 'oninput', function () {
         s9e.TextFormatter.preview(this.value, previewDOM);
     });
-
-    extend(ComposerBody.prototype, 'headerItems', function (items) {
-        items.add('preview-discussion', previewDOM, 50);
-        if (previewMode) {
-            previewDOM.style.display = "block";
-        } else {
-            previewDOM.style.display = "none";
-        }
-    });
 });
