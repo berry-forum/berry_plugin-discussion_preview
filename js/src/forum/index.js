@@ -3,9 +3,7 @@ import ComposerBody from 'flarum/components/ComposerBody';
 import DiscussionComposer from 'flarum/components/DiscussionComposer';
 import { extend } from 'flarum/extend';
 
-app.initializers.add('simonxeko/preview-discussion', () => {
-  console.log('[simonxeko/preview-discussion] Hello, forum!');
-
+app.initializers.add('preview-discussion', () => {
   let index = 1;
   let textareaId = 'textarea1';
   let previewMode = false;

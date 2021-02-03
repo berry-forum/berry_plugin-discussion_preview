@@ -1,31 +1,30 @@
 {
-  "name": "simonxeko/preview-discussion",
-  "description": "Preview the final output when editing a new discussion",
-  "keywords": [
-    "flarum"
-  ],
+  "name": "starinc/discussion_preview",
+  "description": "Preview the final output when editing a new discussion.",
   "type": "flarum-extension",
+  "keywords": [
+    "discussion",
+    "preview"
+  ],
+  "homepage": "https://nex.starinc.xyz/",
   "license": "MIT",
-  "require": {
-    "flarum/core": "^0.1.0-beta.8"
-  },
-  "authors": [],
-  "autoload": {
-    "psr-4": {
-      "Simonxeko\\PreviewDicussion\\": "src/"
+  "authors": [
+    {
+      "name": "SuperSonic",
+      "email": "supersonic@livemail.tw"
     }
+  ],
+  "require": {
+    "flarum/core": "^0.1.0"
   },
   "extra": {
     "flarum-extension": {
-      "title": "Preview Discussion",
+      "title": "Discussion Preview",
       "icon": {
-        "name": "",
-        "backgroundColor": "",
-        "color": ""
+        "name": "fas fa-eye",
+        "backgroundColor": "#fd7e14",
+        "color": "#fff"
       }
-    },
-    "flagrow": {
-      "discuss": ""
     }
   }
 }
