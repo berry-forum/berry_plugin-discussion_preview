@@ -31,7 +31,7 @@ app.initializers.add('preview-discussion', () => {
     extend(TextEditor.prototype, 'controlItems', function (items) {
         items.add(previewItemName, <div>Loading Preview</div>, 50);
         if (previewMode) {
-            s9e.TextFormatter.preview(this.value, $(previewClassName));
+            // s9e.TextFormatter.preview(this.value, $(previewClassName));
             $(previewClassName).show();
         } else {
             $(previewClassName).hide();
