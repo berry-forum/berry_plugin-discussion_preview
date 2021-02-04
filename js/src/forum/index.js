@@ -1,3 +1,5 @@
+/*global s9e*/
+
 import TextEditor from 'flarum/components/TextEditor';
 import ComposerBody from 'flarum/components/ComposerBody';
 import DiscussionComposer from 'flarum/components/DiscussionComposer';
@@ -6,8 +8,6 @@ import {extend} from 'flarum/extend';
 app.initializers.add('preview-discussion', () => {
     let index = 1;
     let previewMode = false;
-    const previewDOM = document.createElement("div");
-    document.body.appendChild(previewDOM);
 
     extend(DiscussionComposer.prototype, 'init', function () {
         this.editor.props.preview = () => {
@@ -26,16 +26,17 @@ app.initializers.add('preview-discussion', () => {
         }
     });
 
-    extend(TextEditor.prototype, 'oninput', function (vdom) {
-        console.log(vdom);
+    extend(TextEditor.prototype, 'oninput', function () {
+        // s9e.TextFormatter.preview(this.value, previewDOM);
     });
 
-    // extend(ComposerBody.prototype, 'headerItems', function (items) {
-    //     items.add('preview-discussion', previewDOM, 50);
-    //     if (previewMode) {
-    //         previewDOM.style.display = "block";
-    //     } else {
-    //         previewDOM.style.display = "none";
-    //     }
-    // });
+    extend(ComposerBody.prototype, 'headerItems', function (items) {
+        items.add('preview-discussion', <div>Loading Preview</div>, 50);
+        console.log(items.get('preview-discussion'));
+        // if (previewMode) {
+        //     previewDOM.style.display = "block";
+        // } else {
+        //     previewDOM.style.display = "none";
+        // }
+    });
 });
