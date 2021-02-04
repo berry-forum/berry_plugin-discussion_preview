@@ -29,7 +29,6 @@ app.initializers.add('preview-discussion', () => {
     });
 
     extend(TextEditor.prototype, 'oninput', function () {
-        console.log(this.value());
         $(`${previewClassName} > div`).each((_, dom) => {
             s9e.TextFormatter.preview(this.value(), dom);
         });
@@ -37,8 +36,9 @@ app.initializers.add('preview-discussion', () => {
 
     extend(ComposerBody.prototype, 'headerItems', function (items) {
         items.add(previewItemName, <div>Loading Preview</div>, 50);
+        $(`${previewClassName} > div`).addClass("Post-body");
         if (previewMode) {
-            $(previewClassName).show();
+            $(previewClassName).fadeIn();
         } else {
             $(previewClassName).hide();
         }
