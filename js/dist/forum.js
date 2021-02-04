@@ -142,11 +142,18 @@ app.initializers.add('preview-discussion', function () {
       vdom.children[0].attrs.id = this.textareaId;
     }
   });
-  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_3__["extend"])(flarum_components_TextEditor__WEBPACK_IMPORTED_MODULE_0___default.a.prototype, 'controlItems', function (items) {
+  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_3__["extend"])(flarum_components_TextEditor__WEBPACK_IMPORTED_MODULE_0___default.a.prototype, 'oninput', function () {
+    var _this = this;
+
+    $(previewClassName).each(function (dom) {
+      console.log(dom);
+      s9e.TextFormatter.preview(_this.value, dom);
+    });
+  });
+  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_3__["extend"])(flarum_components_ComposerBody__WEBPACK_IMPORTED_MODULE_1___default.a.prototype, 'headerItems', function (items) {
     items.add(previewItemName, m("div", null, "Loading Preview"), 50);
 
     if (previewMode) {
-      // s9e.TextFormatter.preview(this.value, $(previewClassName));
       $(previewClassName).show();
     } else {
       $(previewClassName).hide();

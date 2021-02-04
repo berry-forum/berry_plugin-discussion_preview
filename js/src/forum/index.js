@@ -28,10 +28,16 @@ app.initializers.add('preview-discussion', () => {
         }
     });
 
-    extend(TextEditor.prototype, 'controlItems', function (items) {
+    extend(TextEditor.prototype, 'oninput', function () {
+        $(previewClassName).each((dom) => {
+            console.log(dom);
+            s9e.TextFormatter.preview(this.value, dom);
+        });
+    });
+
+    extend(ComposerBody.prototype, 'headerItems', function (items) {
         items.add(previewItemName, <div>Loading Preview</div>, 50);
         if (previewMode) {
-            // s9e.TextFormatter.preview(this.value, $(previewClassName));
             $(previewClassName).show();
         } else {
             $(previewClassName).hide();
