@@ -28,15 +28,10 @@ app.initializers.add('preview-discussion', () => {
         }
     });
 
-    extend(TextEditor.prototype, 'oninput', function () {
-        $(previewClassName).each(dom =>
-            s9e.TextFormatter.preview(this.value, dom)
-        );
-    });
-
-    extend(ComposerBody.prototype, 'headerItems', function (items) {
+    extend(TextEditor.prototype, 'controlItems', function (items) {
         items.add(previewItemName, <div>Loading Preview</div>, 50);
         if (previewMode) {
+            s9e.TextFormatter.preview(this.value, $(previewClassName));
             $(previewClassName).show();
         } else {
             $(previewClassName).hide();
