@@ -1,4 +1,4 @@
-/*global s9e*/
+/*global s9e, jQuery*/
 
 import TextEditor from 'flarum/components/TextEditor';
 import ComposerBody from 'flarum/components/ComposerBody';
@@ -8,6 +8,7 @@ import {extend} from 'flarum/extend';
 app.initializers.add('preview-discussion', () => {
     let index = 1;
     let previewMode = false;
+    const previewClassName = 'preview-discussion';
 
     extend(DiscussionComposer.prototype, 'init', function () {
         this.editor.props.preview = () => {
@@ -27,16 +28,15 @@ app.initializers.add('preview-discussion', () => {
     });
 
     extend(TextEditor.prototype, 'oninput', function () {
-        // s9e.TextFormatter.preview(this.value, previewDOM);
+        previewDOM.each(dom => s9e.TextFormatter.preview(this.value, dom));
     });
 
     extend(ComposerBody.prototype, 'headerItems', function (items) {
-        items.add('preview-discussion', <div>Loading Preview</div>, 50);
-        console.log(items.get('preview-discussion'));
-        // if (previewMode) {
-        //     previewDOM.style.display = "block";
-        // } else {
-        //     previewDOM.style.display = "none";
-        // }
+        items.add(previewClassName, <div>Loading Preview</div>, 50);
+        if (previewMode) {
+            jQuery(`.${previewClassName}`).show();
+        } else {
+            jQuery(`.${previewClassName}`).hide();
+        }
     });
 });

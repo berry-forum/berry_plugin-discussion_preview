@@ -118,7 +118,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var flarum_components_DiscussionComposer__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_components_DiscussionComposer__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var flarum_extend__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/extend */ "flarum/extend");
 /* harmony import */ var flarum_extend__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_extend__WEBPACK_IMPORTED_MODULE_3__);
-/*global s9e*/
+/*global s9e, jQuery*/
 
 
 
@@ -126,6 +126,7 @@ __webpack_require__.r(__webpack_exports__);
 app.initializers.add('preview-discussion', function () {
   var index = 1;
   var previewMode = false;
+  var previewClassName = 'preview-discussion';
   Object(flarum_extend__WEBPACK_IMPORTED_MODULE_3__["extend"])(flarum_components_DiscussionComposer__WEBPACK_IMPORTED_MODULE_2___default.a.prototype, 'init', function () {
     this.editor.props.preview = function () {
       previewMode = !previewMode;
@@ -140,15 +141,21 @@ app.initializers.add('preview-discussion', function () {
       vdom.children[0].attrs.id = this.textareaId;
     }
   });
-  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_3__["extend"])(flarum_components_TextEditor__WEBPACK_IMPORTED_MODULE_0___default.a.prototype, 'oninput', function () {// s9e.TextFormatter.preview(this.value, previewDOM);
+  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_3__["extend"])(flarum_components_TextEditor__WEBPACK_IMPORTED_MODULE_0___default.a.prototype, 'oninput', function () {
+    var _this = this;
+
+    previewDOM.each(function (dom) {
+      return s9e.TextFormatter.preview(_this.value, dom);
+    });
   });
   Object(flarum_extend__WEBPACK_IMPORTED_MODULE_3__["extend"])(flarum_components_ComposerBody__WEBPACK_IMPORTED_MODULE_1___default.a.prototype, 'headerItems', function (items) {
-    items.add('preview-discussion', m("div", null, "Loading Preview"), 50);
-    console.log(items.get('preview-discussion')); // if (previewMode) {
-    //     previewDOM.style.display = "block";
-    // } else {
-    //     previewDOM.style.display = "none";
-    // }
+    items.add(previewClassName, m("div", null, "Loading Preview"), 50);
+
+    if (previewMode) {
+      jQuery("." + previewClassName).show();
+    } else {
+      jQuery("." + previewClassName).hide();
+    }
   });
 });
 
