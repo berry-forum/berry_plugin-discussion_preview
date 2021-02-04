@@ -19,7 +19,9 @@ app.initializers.add('preview-discussion', () => {
     });
 
     extend(TextEditor.prototype, 'configTextarea', function (_, dom) {
-        if (previewMode === true) {
+        if (previewMode !== true) {
+            dom.style.visibility = "visible";
+        } else {
             dom.style.visibility = "hidden";
         }
         $(`${previewClassName} > div`).css({

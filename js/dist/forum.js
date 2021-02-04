@@ -137,7 +137,9 @@ app.initializers.add('preview-discussion', function () {
     };
   });
   Object(flarum_extend__WEBPACK_IMPORTED_MODULE_4__["extend"])(flarum_components_TextEditor__WEBPACK_IMPORTED_MODULE_0___default.a.prototype, 'configTextarea', function (_, dom) {
-    if (previewMode === true) {
+    if (previewMode !== true) {
+      dom.style.visibility = "visible";
+    } else {
       dom.style.visibility = "hidden";
     }
 
