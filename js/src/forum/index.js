@@ -45,7 +45,7 @@ app.initializers.add('preview-discussion', () => {
     });
 
     extend(ComposerBody.prototype, 'headerItems', function (items) {
-        items.add(previewItemName, <div>Loading Preview</div>, 50);
+        items.add(previewItemName, <div>Loading Preview</div>, -1);
         $(`${previewClassName} > div`).addClass("Post-body");
         if (previewMode) {
             $(previewClassName).fadeIn();
@@ -54,10 +54,9 @@ app.initializers.add('preview-discussion', () => {
         }
     });
 
-    extend(Composer.prototype, 'view', function (vdom) {
-        console.log(vdom);
+    extend(Composer.prototype, 'view', function () {
         $(`${previewClassName} > div`).css({
-            height: this.computedHeight()
+            height: this.computedHeight() - 60
         });
     });
 });
