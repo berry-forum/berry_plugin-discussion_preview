@@ -56,7 +56,7 @@ app.initializers.add('preview-discussion', () => {
 
     extend(Composer.prototype, 'view', function () {
         $(`${previewClassName} > div`).css({
-            height: this.computedHeight() - 60
+            height: this.computedHeight() - 130
         });
     });
 });
