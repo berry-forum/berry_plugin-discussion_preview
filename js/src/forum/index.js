@@ -48,6 +48,5 @@ app.initializers.add('preview-discussion', () => {
 
     extend(Composer.prototype, 'view', function (vdom) {
         console.log(vdom);
-        $(`${previewClassName} > div`).css();
     });
 });
