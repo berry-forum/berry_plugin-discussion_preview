@@ -47,6 +47,6 @@ app.initializers.add('preview-discussion', () => {
     });
 
     extend(Composer.prototype, 'view', function (vdom) {
-        console.log(vdom);
+        console.log(vdom, this.computedHeight());
     });
 });
