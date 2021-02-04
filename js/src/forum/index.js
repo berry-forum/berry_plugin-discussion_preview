@@ -18,7 +18,7 @@ app.initializers.add('preview-discussion', () => {
         };
     });
 
-    extend(TextEditor.prototype, 'configTextarea', function (dom) {
+    extend(TextEditor.prototype, 'configTextarea', function (_, dom) {
         $(`${previewClassName} > div`).css({
             width: dom.clientWidth,
             height: dom.clientHeight

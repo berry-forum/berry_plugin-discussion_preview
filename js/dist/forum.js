@@ -136,7 +136,7 @@ app.initializers.add('preview-discussion', function () {
       previewMode = !previewMode;
     };
   });
-  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_4__["extend"])(flarum_components_TextEditor__WEBPACK_IMPORTED_MODULE_0___default.a.prototype, 'configTextarea', function (dom) {
+  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_4__["extend"])(flarum_components_TextEditor__WEBPACK_IMPORTED_MODULE_0___default.a.prototype, 'configTextarea', function (_, dom) {
     $(previewClassName + " > div").css({
       width: dom.clientWidth,
       height: dom.clientHeight
