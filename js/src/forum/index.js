@@ -1,6 +1,7 @@
 /*global s9e, $*/
 
 import TextEditor from 'flarum/components/TextEditor';
+import Composer from 'flarum/components/Composer';
 import ComposerBody from 'flarum/components/ComposerBody';
 import DiscussionComposer from 'flarum/components/DiscussionComposer';
 import {extend} from 'flarum/extend';
@@ -26,6 +27,7 @@ app.initializers.add('preview-discussion', () => {
         if (!vdom.children[0].attrs.id) {
             vdom.children[0].attrs.id = this.textareaId;
         }
+        console.log(vdom);
     });
 
     extend(TextEditor.prototype, 'oninput', function () {
@@ -42,5 +44,10 @@ app.initializers.add('preview-discussion', () => {
         } else {
             $(previewClassName).hide();
         }
+    });
+
+    extend(Composer.prototype, 'view', function (vdom) {
+        console.log(vdom);
+        $(`${previewClassName} > div`).css();
     });
 });
