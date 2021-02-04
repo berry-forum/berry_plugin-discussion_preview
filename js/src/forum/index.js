@@ -18,6 +18,10 @@ app.initializers.add('preview-discussion', () => {
         };
     });
 
+    extend(TextEditor.prototype, 'configTextarea', function (dom, status) {
+        console.log(dom, status);
+    });
+
     extend(TextEditor.prototype, 'init', function () {
         this.textareaId = 'textarea' + (index++);
     });
@@ -44,9 +48,5 @@ app.initializers.add('preview-discussion', () => {
         } else {
             $(previewClassName).hide();
         }
-    });
-
-    extend(Composer.prototype, 'view', function (vdom) {
-        console.log(vdom, this.computedHeight());
     });
 });

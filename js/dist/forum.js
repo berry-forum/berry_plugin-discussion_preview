@@ -136,6 +136,9 @@ app.initializers.add('preview-discussion', function () {
       previewMode = !previewMode;
     };
   });
+  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_4__["extend"])(flarum_components_TextEditor__WEBPACK_IMPORTED_MODULE_0___default.a.prototype, 'configTextarea', function (dom, status) {
+    console.log(dom, status);
+  });
   Object(flarum_extend__WEBPACK_IMPORTED_MODULE_4__["extend"])(flarum_components_TextEditor__WEBPACK_IMPORTED_MODULE_0___default.a.prototype, 'init', function () {
     this.textareaId = 'textarea' + index++;
   });
@@ -163,9 +166,6 @@ app.initializers.add('preview-discussion', function () {
     } else {
       $(previewClassName).hide();
     }
-  });
-  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_4__["extend"])(flarum_components_Composer__WEBPACK_IMPORTED_MODULE_1___default.a.prototype, 'view', function (vdom) {
-    console.log(vdom, this.computedHeight());
   });
 });
 
