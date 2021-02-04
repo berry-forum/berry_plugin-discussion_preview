@@ -1,59 +1,58 @@
+/*global s9e, $*/
+
 import TextEditor from 'flarum/components/TextEditor';
 import ComposerBody from 'flarum/components/ComposerBody';
 import DiscussionComposer from 'flarum/components/DiscussionComposer';
-import { extend } from 'flarum/extend';
+import {extend} from 'flarum/extend';
 
 app.initializers.add('preview-discussion', () => {
-  let index = 1;
-  let textareaId = 'textarea1';
-  let previewMode = false;
-  
+    let index = 1;
+    let previewMode = false;
+    const previewItemName = 'preview-discussion';
+    const previewClassName = `.item-${previewItemName}`;
 
-  let onClickPreview = () => { 
-    previewMode = !previewMode;
-    if (previewMode) {
-      s9e.TextFormatter.preview($('#' + textareaId).val(), $('#preview-discussion')[0]);
-      $('#preview-discussion').show();
-    } else {
-      $('#preview-discussion').hide();
-    }
-  }
+    extend(DiscussionComposer.prototype, 'init', function () {
+        this.editor.props.preview = () => {
+            previewMode = !previewMode;
+        };
+    });
 
-  extend(DiscussionComposer.prototype, 'init', function() {
-    this.editor.props.preview = () => {
-      onClickPreview();
-    }
-  });
+    extend(TextEditor.prototype, 'configTextarea', function (_, dom) {
+        if (previewMode !== true) {
+            dom.style.visibility = "visible";
+        } else {
+            dom.style.visibility = "hidden";
+        }
+        $(`${previewClassName} > div`).css({
+            width: dom.clientWidth,
+            height: dom.clientHeight
+        });
+    });
 
-  extend(TextEditor.prototype, 'init', function() {
-    textareaId = 'textarea'+(index++);
-  });
+    extend(TextEditor.prototype, 'init', function () {
+        this.textareaId = 'textarea' + (index++);
+    });
 
-  extend(TextEditor.prototype, 'view', function(vdom) {
-    if (!vdom.children[0].attrs.id) { // Check id to avoid conflicts with markdown extension
-      vdom.children[0].attrs.id = this.textareaId;
-    } 
-  });
+    extend(TextEditor.prototype, 'view', function (vdom) {
+        // Check id to avoid conflicts with markdown extension
+        if (!vdom.children[0].attrs.id) {
+            vdom.children[0].attrs.id = this.textareaId;
+        }
+    });
 
-  extend(TextEditor.prototype, 'oninput', function() {
-    // Simultaneously render preview
-    // s9e.TextFormatter.preview($('#' + textareaId).val(), $('#preview-discussion')[0]);
-  });
+    extend(TextEditor.prototype, 'oninput', function () {
+        $(`${previewClassName} > div`).each((_, dom) => {
+            s9e.TextFormatter.preview(this.value(), dom);
+        });
+    });
 
-  extend(ComposerBody.prototype, 'headerItems', function(items) {
-    items.add('preview-discussion', 
-      <div id="preview-discussion" class="Post-body" style="display: none; position: absolute; background: white; z-index: 99;">TEST_PREVIEW</div>,
-    50);
-  });
-
-  setInterval(() => {
-    if ($('#' + textareaId).offset()) {
-      $('#preview-discussion').css({
-        width: $('#' + textareaId).width(),
-        height: $('#' + textareaId).height() + 10,
-        top: $('#' + textareaId).offset().top - $('.Composer').offset().top,
-        left: $('#' + textareaId).offset().left - $('.Composer').offset().left,
-      });
-    }
-  }, 300);
+    extend(ComposerBody.prototype, 'headerItems', function (items) {
+        items.add(previewItemName, <div>Loading Preview</div>, -1);
+        $(`${previewClassName} > div`).addClass("Post-body");
+        if (previewMode) {
+            $(previewClassName).fadeIn();
+        } else {
+            $(previewClassName).hide();
+        }
+    });
 });
