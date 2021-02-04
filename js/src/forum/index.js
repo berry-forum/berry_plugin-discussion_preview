@@ -1,7 +1,6 @@
 /*global s9e, $*/
 
 import TextEditor from 'flarum/components/TextEditor';
-import Composer from 'flarum/components/Composer';
 import ComposerBody from 'flarum/components/ComposerBody';
 import DiscussionComposer from 'flarum/components/DiscussionComposer';
 import {extend} from 'flarum/extend';
@@ -25,7 +24,8 @@ app.initializers.add('preview-discussion', () => {
             dom.style.visibility = "hidden";
         }
         $(`${previewClassName} > div`).css({
-            width: dom.clientWidth
+            width: dom.clientWidth,
+            height: dom.clientHeight
         });
     });
 
@@ -54,11 +54,5 @@ app.initializers.add('preview-discussion', () => {
         } else {
             $(previewClassName).hide();
         }
-    });
-
-    extend(Composer.prototype, 'view', function () {
-        $(`${previewClassName} > div`).css({
-            height: this.computedHeight() - 150
-        });
     });
 });
