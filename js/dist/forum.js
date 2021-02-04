@@ -136,8 +136,11 @@ app.initializers.add('preview-discussion', function () {
       previewMode = !previewMode;
     };
   });
-  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_4__["extend"])(flarum_components_TextEditor__WEBPACK_IMPORTED_MODULE_0___default.a.prototype, 'configTextarea', function (dom, status) {
-    console.log(dom, status);
+  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_4__["extend"])(flarum_components_TextEditor__WEBPACK_IMPORTED_MODULE_0___default.a.prototype, 'configTextarea', function (dom) {
+    $(previewClassName + " > div").css({
+      width: dom.clientWidth,
+      height: dom.clientHeight
+    });
   });
   Object(flarum_extend__WEBPACK_IMPORTED_MODULE_4__["extend"])(flarum_components_TextEditor__WEBPACK_IMPORTED_MODULE_0___default.a.prototype, 'init', function () {
     this.textareaId = 'textarea' + index++;
@@ -147,8 +150,6 @@ app.initializers.add('preview-discussion', function () {
     if (!vdom.children[0].attrs.id) {
       vdom.children[0].attrs.id = this.textareaId;
     }
-
-    console.log(vdom);
   });
   Object(flarum_extend__WEBPACK_IMPORTED_MODULE_4__["extend"])(flarum_components_TextEditor__WEBPACK_IMPORTED_MODULE_0___default.a.prototype, 'oninput', function () {
     var _this = this;

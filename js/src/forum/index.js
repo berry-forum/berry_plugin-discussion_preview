@@ -18,8 +18,11 @@ app.initializers.add('preview-discussion', () => {
         };
     });
 
-    extend(TextEditor.prototype, 'configTextarea', function (dom, status) {
-        console.log(dom, status);
+    extend(TextEditor.prototype, 'configTextarea', function (dom) {
+        $(`${previewClassName} > div`).css({
+            width: dom.clientWidth,
+            height: dom.clientHeight
+        });
     });
 
     extend(TextEditor.prototype, 'init', function () {
@@ -31,7 +34,6 @@ app.initializers.add('preview-discussion', () => {
         if (!vdom.children[0].attrs.id) {
             vdom.children[0].attrs.id = this.textareaId;
         }
-        console.log(vdom);
     });
 
     extend(TextEditor.prototype, 'oninput', function () {
