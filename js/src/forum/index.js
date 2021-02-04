@@ -19,9 +19,11 @@ app.initializers.add('preview-discussion', () => {
     });
 
     extend(TextEditor.prototype, 'configTextarea', function (_, dom) {
+        if (previewMode === true) {
+            dom.style.visibility = "hidden";
+        }
         $(`${previewClassName} > div`).css({
-            width: dom.clientWidth,
-            height: dom.clientHeight
+            width: dom.clientWidth
         });
     });
 
@@ -50,5 +52,12 @@ app.initializers.add('preview-discussion', () => {
         } else {
             $(previewClassName).hide();
         }
+    });
+
+    extend(Composer.prototype, 'view', function (vdom) {
+        console.log(vdom);
+        $(`${previewClassName} > div`).css({
+            height: this.computedHeight()
+        });
     });
 });
