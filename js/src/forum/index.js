@@ -29,8 +29,7 @@ app.initializers.add('preview-discussion', () => {
     });
 
     extend(TextEditor.prototype, 'oninput', function () {
-        $(previewClassName).each((dom) => {
-            console.log(dom);
+        $(previewClassName).each((_, dom) => {
             s9e.TextFormatter.preview(this.value, dom);
         });
     });
