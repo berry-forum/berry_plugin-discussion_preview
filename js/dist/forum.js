@@ -145,7 +145,8 @@ app.initializers.add('preview-discussion', function () {
   Object(flarum_extend__WEBPACK_IMPORTED_MODULE_3__["extend"])(flarum_components_TextEditor__WEBPACK_IMPORTED_MODULE_0___default.a.prototype, 'oninput', function () {
     var _this = this;
 
-    $(previewClassName).each(function (_, dom) {
+    console.log(this.value);
+    $(previewClassName + " > div").each(function (_, dom) {
       s9e.TextFormatter.preview(_this.value, dom);
     });
   });
